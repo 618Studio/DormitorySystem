@@ -3,12 +3,12 @@ package javaBean;
 import java.util.List;
 
 public class student {
-	private String id;//学号
-	private String name;//姓名
-	private String gender;//性别
-	private String grade;//年级
-	private List<String> favoriteGayId;//想要的基友的id
-	private List<String> answers;//问卷答案
+	private String id;//student id
+	private String name;//name
+	private String gender;//
+	private String grade;//grade
+	private List<String> favoriteGayId;//id of gay you want
+	private List<String> answers;//questions' answer you choose 
 	
 	student(String id,String name,String gender,String grade){
 		this.id = id;
