@@ -17,11 +17,11 @@ public class dormitory {
 		this.stu = new student[capacity];
 	}
 	
-	void InitStudent(String id,String name,String gpa,String phone,String gender,String grade){
+	void InitStudent(String id,String name,String gender,String grade){
 		if(this.nrOfPerson==this.capacity){
-			JOptionPane.showMessageDialog(null, "该寝室人员已满");
+			JOptionPane.showMessageDialog(null, "The dormitory is full of students.");
 		}else{
-			stu[this.nrOfPerson] = new student(id,name,gpa,phone,gender,grade);
+			stu[this.nrOfPerson] = new student(id,name,gender,grade);
 			this.nrOfPerson++;
 		}
 	}

@@ -7,16 +7,12 @@ public class student {
 	private String name;//姓名
 	private String gender;//性别
 	private String grade;//年级
-	private String gpa;//绩点
-	private String phone;//手机号码
 	private List<String> favoriteGayId;//想要的基友的id
 	private List<String> answers;//问卷答案
 	
-	student(String id,String name,String gpa,String phone,String gender,String grade){
+	student(String id,String name,String gender,String grade){
 		this.id = id;
 		this.name = name;
-		this.gpa = gpa;
-		this.phone = phone;
 		this.gender = gender;
 		this.grade = grade;
 	}
@@ -29,10 +25,6 @@ public class student {
 		return this.id;
 	}
 	
-	String getGpa(){
-		return this.gpa;
-	}
-	
 	String getName(){
 		return this.name;
 	}
@@ -40,11 +32,6 @@ public class student {
 	String getGender(){
 		return this.gender;
 	}
-	
-	String getPhone(){
-		return this.phone;
-	}
-	
 
 	List<String> getFavoriteGay(){
 		return this.favoriteGayId;
@@ -62,14 +49,6 @@ public class student {
 		this.name = name;
 	}
 	
-	void setGpa(String gpa){
-		this.gpa = gpa;
-	}
-	
-	void setPhone(String phone){
-		this.phone = phone;
-	}
-	
 	void setGrade(String grade){
 		this.grade = grade;
 	}
@@ -78,11 +57,11 @@ public class student {
 		this.gender = gender;
 	}
 	
-	//添加想要的基友，参数为基友id
+	//choose your favorite gay
 	void addGay(String gayId){
 		this.favoriteGayId.add(gayId);
 	}
-	//添加答案
+	//add answer
 	void addAnswer(String answer){
 		this.answers.add(answer);
 	}
