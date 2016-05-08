@@ -56,7 +56,7 @@ public class ConnectDB {
 		instance.closeDB(); 
     }
 	
-	private static int update(String sql){
+	protected static int update(String sql){
 		int rs;
 		try {
 			// statement用来执行SQL语句
@@ -70,7 +70,7 @@ public class ConnectDB {
 		}
 	}
 	
-	private static ResultSet query(String sql) {
+	protected static ResultSet query(String sql) {
 		ResultSet rs;
 		try {
 			// statement用来执行SQL语句
