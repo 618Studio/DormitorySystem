@@ -3,17 +3,19 @@ package javaBean;
 import java.util.List;
 
 public class student {
-	private String id;//student id
-	private String name;//name
-	private String gender;//
-	private String grade;//grade
-	private List<String> favoriteGayId;//id of gay you want
-	private List<String> answers;//questions' answer you choose 
+	private String id;     				//student id
+	private String name;   				//name
+	private String gender; 				//gender
+	private String gpa;    				//gpa
+	private String grade;    			//grade
+	private List<String> favoriteGayId; //id of gay you want
+	private List<String> answers;		//questions' answer you choose 
 	
-	student(String id,String name,String gender,String grade){
+	student(String id,String name,String gender,String gpa,String grade){
 		this.id = id;
 		this.name = name;
 		this.gender = gender;
+		this.gpa = gpa;
 		this.grade = grade;
 	}
 	
@@ -27,6 +29,10 @@ public class student {
 	
 	String getName(){
 		return this.name;
+	}
+	
+	String getGpa(){
+		return this.gpa;
 	}
 	
 	String getGender(){
@@ -47,6 +53,10 @@ public class student {
 	
 	void setName(String name){
 		this.name = name;
+	}
+	
+	void setGpa(String gpa){
+		this.gpa = gpa;
 	}
 	
 	void setGrade(String grade){

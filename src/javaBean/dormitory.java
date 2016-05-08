@@ -3,10 +3,10 @@ package javaBean;
 import javax.swing.JOptionPane;
 
 public class dormitory {
-	private String roomNr;//dormitory id
-	private String address;//dormitory address
-	private int capacity;//the maximum number of students 
-	private int nrOfPerson;//the number of students in the dormitory at present
+	private String roomNr;//寝室编号
+	private String address;//寝室地址
+	private int capacity;//该寝室能住多少人
+	private int nrOfPerson;
 	public student[] stu;
 
 	dormitory(String roomNr,String address,int capacity){
@@ -17,11 +17,11 @@ public class dormitory {
 		this.stu = new student[capacity];
 	}
 	
-	void InitStudent(String id,String name,String gender,String grade){
+	void InitStudent(String id,String name,String gender,String gpa,String grade){
 		if(this.nrOfPerson==this.capacity){
 			JOptionPane.showMessageDialog(null, "The dormitory is full of students.");
 		}else{
-			stu[this.nrOfPerson] = new student(id,name,gender,grade);
+			stu[this.nrOfPerson] = new student(id,name,gender,gpa,grade);
 			this.nrOfPerson++;
 		}
 	}
