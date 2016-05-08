@@ -354,6 +354,14 @@ button.fs-continue,
 	background-image:url(../images/conversion.svg);
 }
 
+.fs-fields .fs-radio-custom label.radio-yes::after {
+	background-image:url(../images/yes.png);
+}
+
+.fs-fields .fs-radio-custom label.radio-no::after {
+	background-image:url(../images/no.png);
+}
+
 .fs-fields .fs-radio-custom label:hover::after,
 .fs-fields input[type="radio"]:focus + label::after,
 .fs-fields input[type="radio"]:checked + label::after {

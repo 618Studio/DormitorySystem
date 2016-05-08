@@ -43,7 +43,9 @@
         </script>
 </head>
 <body>
-	<% String url = new String("question.jsp");%>
+	<%
+		String QuestionUrl = new String("question.jsp");
+	%>
 	<div class="mianBox">
 		<img src="images/yun0.png" class="yun yun0" />
         <img src="images/yun1.png" class="yun yun1" />
@@ -54,7 +56,7 @@
                 <div class="in">
                     <div class="textThis">
                         <h2>请等待</h2>
-                        <p><span>页面自动<a id="href" href=<%=url %>>跳转</a></span><span>等待<b id="wait">5</b>秒</span></p>
+                        <p><span>页面自动<a id="href" href=<%=QuestionUrl %>>跳转</a></span><span>等待<b id="wait">5</b>秒</span></p>
                         <script type="text/javascript">                            (function() {
                                 var wait = document.getElementById('wait'), href = document.getElementById('href').href;
                                 var interval = setInterval(function() {
