@@ -56,7 +56,7 @@ public class ConnectDB {
 		instance.closeDB(); 
     }
 	
-	private static int update(String sql){
+	protected static int update(String sql){
 		int rs;
 		try {
 			// statement用来执行SQL语句
@@ -70,7 +70,7 @@ public class ConnectDB {
 		}
 	}
 	
-	private static ResultSet query(String sql) {
+	protected static ResultSet query(String sql) {
 		ResultSet rs;
 		try {
 			// statement用来执行SQL语句
@@ -83,16 +83,5 @@ public class ConnectDB {
 			e.printStackTrace();
 			return null;
 		}
-	}
-	
-	/*public static void main(String args[]){
-	ConnectDB connect = new ConnectDB();
-	String s = "2016-05-03 09:25:12";
-	Timestamp time = Timestamp.valueOf(s);
-	ChatMessage mes = new ChatMessage("1", "10000", "10001", s, "helloworld!");
-	System.out.println(connect.saveMessage(mes));
-	Account a = new Account("10000",null,null);
-	getFriend(a);
-}*/
-	
+	}	
 }
