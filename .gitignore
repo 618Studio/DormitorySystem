@@ -33,3 +33,5 @@ Thumbs.db
 <pre>
 /build/
 /bin/
+
+*.class
