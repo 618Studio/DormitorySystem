@@ -9,7 +9,6 @@ public class student {
 	private String gpa;    				//gpa
 	private String grade;    			//grade
 	private List<String> favoriteGayId; //id of gay you want
-	private List<String> answers;		//questions' answer you choose 
 	
 	student(String id,String name,String gender,String gpa,String grade){
 		this.id = id;
@@ -43,10 +42,6 @@ public class student {
 		return this.favoriteGayId;
 	}
 	
-	List<String> getAnswers(){
-		return this.answers;
-	}
-	
 	void setId(String id){
 		this.id = id;
 	}
@@ -71,9 +66,5 @@ public class student {
 	void addGay(String gayId){
 		this.favoriteGayId.add(gayId);
 	}
-	//add answer
-	void addAnswer(String answer){
-		this.answers.add(answer);
-	}
-	
+
 }
