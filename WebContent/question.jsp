@@ -127,13 +127,16 @@
 							<span><input id="q15b" name="q15" type="radio" value="no"/><label for="q15b" class="radio-no">否</label></span>
 						</div>
 					</li>
-					<li>
-						<label class="fs-field-label fs-anim-upper" for="q16">你想要的室友的学号是多少?</label>
-						<input class="fs-anim-lower" id="q16" name="q16" type="text" placeholder=" your favorite gay's id" required />
+					<li data-input-trigger>
+						<label class="fs-field-label fs-anim-upper" for="q15" data-info="About life">你是否想睡下铺?</label>
+						<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
+							<span><input id="q16a" name="q16" type="radio" value="yes"/><label for="q16a" class="radio-yes">是</label></span>
+							<span><input id="q16b" name="q16" type="radio" value="no"/><label for="q16b" class="radio-no">否</label></span>
+						</div>
 					</li>
 					<li>
-						<label class="fs-field-label fs-anim-upper" for="q17">你的绩点是多少?</label>
-						<input class="fs-anim-lower" id="q17" name="q17" type="text" placeholder=" your GPA" required autofocus/>
+						<label class="fs-field-label fs-anim-upper" for="q17">你想要的室友的学号是多少?</label>
+						<input class="fs-anim-lower" id="q17" name="q17" type="text" placeholder=" your favorite gay's id" pattern="/[0-9]{12}/" title="输入正确学号" required />
 					</li>
 				</ol>
 				<button class="fs-submit" type="submit">提交问卷</button>
