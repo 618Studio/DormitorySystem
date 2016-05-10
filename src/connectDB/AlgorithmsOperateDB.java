@@ -6,6 +6,14 @@ import java.sql.SQLException;
 import javaBean.Question;
 
 public class AlgorithmsOperateDB {
+	/*public static void main(String args[]){
+		System.out.println("hello");
+		Question[][] res=AlgorithmsOperateDB.getQuestionResult();
+		for(int i=1;i<5;i++){
+			System.out.println(res[i][0].getSno()+res[i][0].getFuture());
+		}
+	}*/
+	
 	public AlgorithmsOperateDB() {
 		
 	}
@@ -27,22 +35,8 @@ public class AlgorithmsOperateDB {
 		        		result[i][j++] = new Question(
 		        				res.getString("Sno"),
 		        				res.getInt("Qfuture"),
-		        				res.getInt("Qpart2_1"),
-		        				res.getInt("Qpart2_2"),
-		        				res.getInt("Qpart2_3"),
-		        				res.getInt("Qpart2_4"),
-		        				res.getInt("Qpart2_5"),
-		    					res.getInt("Qpart2_6"),
-		   					res.getInt("Qpart3_1"),
-		   					res.getInt("Qpart3_2"),
-		        				res.getInt("Qpart3_3"),
-		        				res.getInt("Qpart3_4"),
-							res.getInt("Qpart3_5"),
-		        				res.getInt("Qpart3_6"),
-		        				res.getInt("Qpart3_7"),
-		        				res.getInt("Qpart3_8"),
-		        				res.getInt("Qpart3_9"),
-		        			    res.getString("Qwant")
+		        				res.getString("Qpart2_3"),
+		        			    res.getInt("Qberth")
 		        				);
 		        	}
 			} catch (SQLException e) {

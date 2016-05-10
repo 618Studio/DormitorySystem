@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConnectDB {
-	private static ConnectDB instance;
+	private static ConnectDB instance = new ConnectDB();
 	private static Connection conn;
 	private static Statement statement;
 	
@@ -31,7 +31,6 @@ public class ConnectDB {
 			conn = DriverManager.getConnection(url, user, password);
 			if (!conn.isClosed())
 				System.out.println("Succeeded connecting to the Database!");
-			instance = new ConnectDB();
 		} catch (Exception e) {
 			System.out.print("Connected fail!");
 			System.exit(1);
