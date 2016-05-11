@@ -4,20 +4,20 @@ public class Question {
 	private String Sno; 
     private int future;
     private String part2_3;
-    private int berth;
+    private String want;
    
     public Question() {
 		Sno = null;
 		this.future = -1;
 		this.part2_3 = null;
-		this.berth = -1;
+		this.want = null;
 	}
     
-	public Question(String sno, int future, String part2_3, int berth) {
+	public Question(String sno, int future, String part2_3, String want) {
 		Sno = sno;
 		this.future = future;
 		this.part2_3 = part2_3;
-		this.berth = berth;
+		this.want = want;
 	}
 	
 	public String getSno() {
@@ -38,10 +38,10 @@ public class Question {
 	public void setPart2_3(String part2_3) {
 		this.part2_3 = part2_3;
 	}
-	public int getBerth() {
-		return berth;
+	public String getWant() {
+		return want;
 	}
-	public void setBerth(int berth) {
-		this.berth = berth;
+	public void setWant(String want) {
+		this.want = want;
 	}
 }

@@ -15,14 +15,13 @@ public class AlgorithmsOperateDB {
 	}*/
 	
 	public AlgorithmsOperateDB() {
-		
 	}
 	
-	public static Question[][] getQuestionResult(){
+	public static Question[][] getQuestionResult(int sex){
 		Question[][] result = new Question[5][];
 		result[0] = null;
 		for (int i=1;i<=4;i++){
-			String sql = "select * from question where Qfuture="+i;
+			String sql = "select * from question where question.Sno in (select Sno from students where Sgender="+ sex +")and question.Qfuture ="+i;
 			ResultSet res = ConnectDB.query(sql);
 			try {
 				res.last();
@@ -36,7 +35,7 @@ public class AlgorithmsOperateDB {
 		        				res.getString("Sno"),
 		        				res.getInt("Qfuture"),
 		        				res.getString("Qpart2_3"),
-		        			    res.getInt("Qberth")
+		        			    res.getString("Qwant")
 		        				);
 		        	}
 			} catch (SQLException e) {
