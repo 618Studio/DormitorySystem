@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-11 22:52:13 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Question" table="question" catalog="DormitorySystem" optimistic-lock="version">
+        <id name="sno" type="string">
+            <column name="Sno" length="12" />
+            <generator class="foreign">
+                <param name="property">students</param>
+            </generator>
+        </id>
+        <one-to-one name="students" class="hibernate.Students" constrained="true"></one-to-one>
+        <property name="qfuture" type="int">
+            <column name="Qfuture" not-null="true" />
+        </property>
+        <property name="qpart23" type="string">
+            <column name="Qpart2_3" length="15" not-null="true" />
+        </property>
+        <property name="qwant" type="string">
+            <column name="Qwant" length="12" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
