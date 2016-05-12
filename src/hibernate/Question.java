@@ -15,6 +15,14 @@ public class Question implements java.io.Serializable {
 	public Question() {
 	}
 
+	public Question(String sno,int qfuture,String qpart23,String qwant)
+	{
+		this.sno = sno;
+		this.qfuture = qfuture;
+		this.qpart23 = qpart23;
+		this.qwant = qwant;
+	}
+	
 	public Question(Students students, int qfuture, String qpart23, String qwant) {
 		this.students = students;
 		this.qfuture = qfuture;
