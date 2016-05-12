@@ -19,7 +19,7 @@
 					<div class="col-xs-12">		            
 		            	<div class="control-wrapper">
 		            		<label for="Student ID" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
-		            		<input type="text" class="form-control" id="studentID" name="studentID" placeholder="Student ID">
+		            		<input type="text" class="form-control" id="studentID" name="studentID" placeholder="Student ID" pattern="[0-9]{12}" title="如：201419630101" required>
 		            	</div>
 		            </div>
 		        </div>
@@ -27,7 +27,7 @@
 		          <div class="col-md-12">
 		          	<div class="control-wrapper">
 		            	<label for="password" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
-		            	<input type="password" class="form-control" id="password" name="password" placeholder="Password">
+		            	<input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
 		            </div>
 		          </div>
 		        </div>

@@ -122,21 +122,21 @@
 						</div>
 					</li>
 					<li data-input-trigger>
-						<label class="fs-field-label fs-anim-upper" for="q14" data-info="About life">你是否容忍室友喝醉酒后回寝室乱闹?</label>
+						<label class="fs-field-label fs-anim-upper" for="q14" data-info="About life">你是否在寝室吸烟?</label>
 						<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
 							<span><input id="q14a" name="q14" type="radio" value="yes"/><label for="q14a" class="radio-yes">是</label></span>
 							<span><input id="q14b" name="q14" type="radio" value="no"/><label for="q14b" class="radio-no">否</label></span>
 						</div>
 					</li>
 					<li data-input-trigger>
-						<label class="fs-field-label fs-anim-upper" for="q15" data-info="About life">你是否容忍室友带异性回寝室?</label>
+						<label class="fs-field-label fs-anim-upper" for="q15" data-info="About life">你是否容忍室友喝醉酒后回寝室乱闹?</label>
 						<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
 							<span><input id="q15a" name="q15" type="radio" value="yes"/><label for="q15a" class="radio-yes">是</label></span>
 							<span><input id="q15b" name="q15" type="radio" value="no"/><label for="q15b" class="radio-no">否</label></span>
 						</div>
 					</li>
 					<li data-input-trigger>
-						<label class="fs-field-label fs-anim-upper" for="q15" data-info="About life">你是否想睡下铺?</label>
+						<label class="fs-field-label fs-anim-upper" for="q16" data-info="About life">你是否容忍室友带异性回寝室?</label>
 						<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
 							<span><input id="q16a" name="q16" type="radio" value="yes"/><label for="q16a" class="radio-yes">是</label></span>
 							<span><input id="q16b" name="q16" type="radio" value="no"/><label for="q16b" class="radio-no">否</label></span>
@@ -144,7 +144,7 @@
 					</li>
 					<li>
 						<label class="fs-field-label fs-anim-upper" for="q17">你想要的室友的学号是多少?</label>
-						<input class="fs-anim-lower" id="q17" name="q17" type="text" placeholder=" your favorite gay's id" pattern="/[0-9]{12}/" title="输入正确学号" required />
+						<input class="fs-anim-lower" id="q17" name="q17" type="text" placeholder=" your favorite gay's id" pattern="[0-9]{12}" title="如201419630107" required />
 					</li>
 				</ol>
 				<button class="fs-submit" type="submit">提交问卷</button>
