@@ -9,8 +9,6 @@ import connectDB.AlgorithmsOperateDB;
 import connectDB.ConnectDB;
 
 public class DealQuestion {
-	private Score[] score_same;
-	private Score[] score_compare;
 	private static Question[][] male;
 	private static Question[][] female;
 	
@@ -33,19 +31,10 @@ public class DealQuestion {
 //	}
 	
 	public DealQuestion(){				
-		score_compare = new Score[5];
-		score_same = new Score[5];
-		score_compare[0]=null;
-		score_same[0]=null;
 		male = new Question[5][];
 		female = new Question[5][];
 		male[0] = null;
 		female[0] = null;		
-	
-		calculateSame(male);
-		calculateSame(female);
-		calculateCompare(male);
-		calculateCompare(female);
 	}
 	
 	public void mainAlgorthms(){
@@ -57,21 +46,29 @@ public class DealQuestion {
 		female = AlgorithmsOperateDB.getQuestionResult(FEMALE);
 		
 		//以相同算法得出第一个计分
+		calculateSame(male);
+		calculateSame(female);
 		
+		//以人性化算法得出第二个计分
+		calculateCompare(male);
+		calculateCompare(female);
+		
+		//考虑单向选择增加权重
+		addWeight();
 	}
 	
 	private void dealWant(){
 		try {
 			AlgorithmsOperateDB.dealWant();
-			System.out.println("第一次处理双单向选择问题结束！");
+			System.out.println("1、处理双单向选择问题结束！");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
 	private void calculateCompare(Question[][] question){
-		if (!(question[1].length<4 || question[2].length<4 || question[3].length<4 || question[4].length<4)){
-			for(int i=1;i<5;i++){
+		for(int i=1;i<5;i++){
+			if (question[i].length>4){
 				for (int j=0;j<question[i].length;j++){
 					String nowSno = question[i][0].getSno();
 					String part2_3_1 = question[i][0].getPart2_3();			
@@ -79,6 +76,7 @@ public class DealQuestion {
 						if (k==j) break;
 						String otherSno = question[i][j].getSno();
 						String part2_3_2 = question[i][0].getPart2_3();
+		
 						//根据问题进行人性化对比
 						int count = 0;
 						//焦躁
@@ -125,11 +123,14 @@ public class DealQuestion {
 						if(!(part2_3_1.charAt(14) == '1' && part2_3_2.charAt(14) == '0')){
 							count++;
 						}
-						score_compare[i] = new Score(nowSno,otherSno,count);
+						
+						Score score = new Score(nowSno,otherSno,count);
+						AlgorithmsOperateDB.storeCompareScore(score);
 					}
 				}
 			}
 		}
+		System.out.println("3、处理人性化计分结束，并存入数据库！");
 	}
 	
 	private void calculateSame(Question[][] question){
@@ -145,11 +146,23 @@ public class DealQuestion {
 						int otherQues = Integer.parseInt(part2_3_2,2);
 						//使用二进制亦或方式判断有多少组答案相同的问题，转化为二进制进行计算。
 						int scoreSame = nowQues^otherQues;
-						score_same[i] = new Score(nowSno,otherSno,Integer.toBinaryString(scoreSame).split("1").length);			
-						Algo
+						Score score1 = new Score(nowSno,otherSno,Integer.toBinaryString(scoreSame).split("1").length);	
+						Score score2 = new Score(otherSno,nowSno,Integer.toBinaryString(scoreSame).split("1").length);
+						AlgorithmsOperateDB.storeSameScore(score1);
+						AlgorithmsOperateDB.storeSameScore(score2);
 					}
 				}
 			}
+		}
+		System.out.println("2、处理相同选项计分结束，并存入数据库！");
+	}
+	
+	private void addWeight(){
+		try {
+			AlgorithmsOperateDB.addWeight();
+			System.out.println("4、处理单向权重增加问题结束！");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 }

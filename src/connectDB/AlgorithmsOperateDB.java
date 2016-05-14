@@ -87,7 +87,27 @@ public class AlgorithmsOperateDB {
 		return result;
 	}
 
-	public static void storeSameSore(Score score){
-		
+	//存入数据库第一个相同选项分值
+	public static void storeSameScore(Score score){
+		String insert = "insert into score(SmainNr,SotherNr,SameScore) values('"+ score.getMySno() +"','"+score.getOtherSno()+"',"+score.getScore()+")";
+		ConnectDB.update(insert);
+	}
+	
+	//存入数据库第二个人性化判断分值
+	public static void storeCompareScore(Score score){
+		String insert = "update score set CompareScore = "+ score.getScore() +" where SmainNr='"+ score.getMySno() +"' and SotherNr='"+ score.getOtherSno() +"'";
+		ConnectDB.update(insert);
+	}
+
+	//增加选择性权重分值
+	public static void addWeight() throws SQLException{
+		String getSingleWant = "SELECT * FROM DormitorySystem.matchstudents where type = 0";
+		ResultSet singleWant = ConnectDB.query(getSingleWant);
+		while(singleWant.next()){
+			String mainNr = singleWant.getString("Mno1");
+			String wantNr = singleWant.getString("Mno2");
+			String addScore = "update score set CompareScore = CompareScore + 3 where SmainNr='"+ mainNr +"' and SotherNr='"+ wantNr +"'; update score set SameScore = SameScore + 3 where SmainNr='"+ mainNr +"' and SotherNr='"+ wantNr +"';";
+			ConnectDB.update(addScore);
+		}
 	}
 }
