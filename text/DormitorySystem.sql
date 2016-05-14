@@ -10,7 +10,7 @@ create table students(
 	Sgpa float,
     SroomNr char(10),
     constraint SroomNr_pk foreign key(SroomNr) references dormitory(DroomNr)
-);*/
+);
 
 create table question(
 	Sno char(12) primary key,
@@ -19,14 +19,27 @@ create table question(
     Qberth int not null,
     constraint sno_pk foreign key(Sno) references students(Sno)
 );
-
-/*create table score(
-	Sno char(12) primary key,
-    score int(16)
+*/
+create table score(
+	SmainNr char(12) primary key,
+    SotherNr char (12) not null,
+    SameScore int,
+    CompareScore int,
+    totalScore int,
+    constraint main_pk foreign key(SmainNr) references students(Sno),
+    constraint other_pk foreign key(SotherNr) references students(Sno)
 );
+/*
 create table scoreOrder(
 	Onr int primary key,
     Sno char(12),
     constraint scoreNo_pk foreign key(Sno) references students(Sno)
 )
-*/
+
+create table matchstudents(
+	Mno1 char(12) not null,
+    Mno2 char(12) not null,
+    type int not null,
+    constraint no1_pk foreign key(Mno1) references students(Sno),
+    constraint no2_pk foreign key(Mno2) references students(Sno)
+)*/

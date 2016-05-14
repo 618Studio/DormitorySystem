@@ -11,6 +11,12 @@ public class ConnectDB {
 	private static Connection conn;
 	private static Statement statement;
 	
+	/*test
+	public static void main(String args[]){
+		new ConnectDB();
+	}
+	*/
+	
 	public static ConnectDB getInstance(){
 		   return instance;
 	}
