@@ -1,18 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="hibernate.*" %>
+<%@ page import="org.hibernate.*" %>
+<%@ page import="java.util.List" %>
+<%
+	//验证是否登录
+	Students user = (Students)session.getAttribute("user");
+	if(user==null)
+	{
+		response.sendRedirect("LogIn.jsp");
+		return;
+	}
+	List<Students> stuList = null;
+	Dormitory dor = null;
+	//如果寝室属性已有，说明寝室分配完毕
+	if(user.getDormitory() != null)
+	{
+		//查找同寝室的人
+		BaseDAO<Dormitory> baseDAO = new BaseDAO<Dormitory>();
+		dor = baseDAO.find(Dormitory.class,user.getDormitory().getDroomNr());
+		Session sess = HibernateUtil.getSessionFactory().openSession();
+		//+dor.getDroomNr()
+		Query query = sess.createQuery("select stu from Students stu where stu.dormitory=:dor").setParameter("dor",dor);
+		stuList = query.list();
+	}
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>display</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<style type="text/css" media="screen">
 		@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 		
 		* {margin: 0; padding: 0; }
-		
 		body {
 			font-family: Ubuntu, arial, verdana;
-			background: #0586AD;
+			background:#0586AD;
 		}
 		
 		/*----------
@@ -82,8 +111,7 @@
 			border-bottom: 1px solid #ccc; 
 			font-size: 11px; 
 			list-style-type: none;
-		}
-		
+		}	
 		.footer {
 			padding: 15px; 
 			background: #DEF0F4;
@@ -172,52 +200,193 @@
 	</style>
 </head>
 <body>
-	<ul class="pricing_table">
-		<li class="price_block">
-			<div class="price">
-				<div class="price_figure">
-					<span class="price_number">姓名</span>
-				</div>
+	<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+    <div id="tablePane" class="panel panel-success ">
+		<div class="panel-heading" style="text-align:center;color:black" >寝 室 分 配 结 果</div>
+		
+		<div class="panel-body" style="">
+			<div class="page-header">
+			
+			<%
+				if(user.getDormitory() == null)
+				{
+				%>
+					<h3 style="text-align:center;color:red">分 配 结 果 还 未 公 布，请 耐 心 等 待！</h3>
+				<%
+				}
+				else
+				{
+					%>
+						<h3 style="text-align:center;color:green">寝 室 分 配 已 完 成，结 果 如 下：<br/><br/><small>寝 室 号：<%= dor.getDroomNr()%></small></h3>
+					<%
+				}
+
+			%>	
+			
 			</div>
-			<ul class="features">
-				<li>是否注意个人卫生</li>
-				<li>是否吸烟</li>
-				<li>是否睡觉打呼噜，磨牙，梦游</li>
-				<li>是否熬夜</li>
-				<li>未来规划</li>
-				<li>年级</li>
-			</ul>
-		</li>
-		<li class="price_block">
-			<div class="price">
-				<div class="price_figure">
-					<span class="price_number">姓名</span>
-				</div>
-			</div>
-			<ul class="features">
-				<li>是否注意个人卫生</li>
-				<li>是否吸烟</li>
-				<li>是否睡觉打呼噜，磨牙，梦游</li>
-				<li>是否熬夜</li>
-				<li>未来规划</li>
-				<li>年级</li>
-			</ul>
-		</li>
-		<li class="price_block">
-			<div class="price">
-				<div class="price_figure">
-					<span class="price_number">姓名</span>
-				</div>
-			</div>
-			<ul class="features">
-				<li>是否注意个人卫生</li>
-				<li>是否吸烟</li>
-				<li>是否睡觉打呼噜，磨牙，梦游</li>
-				<li>是否熬夜</li>
-				<li>未来规划</li>
-				<li>年级</li>
-			</ul>
-		</li>
-	</ul>
+		</div>
+		
+	</div>
+	</div>
+			
+						
+		   <%	
+		   if(user.getDormitory() != null)
+		   {
+			    %>
+			    <ul class="pricing_table">
+		   		<% 
+			 	//列出该寝室所有人信息
+				for(Students stu: stuList)
+				{	
+					BaseDAO<Question> baseDAO_Q = new BaseDAO<Question>();
+					Session sess_Q = HibernateUtil.getSessionFactory().openSession();
+					Question question = baseDAO_Q.find(Question.class, stu.getSno());
+					%>
+					<li class="price_block">
+							<div class="price">
+								<div class="price_figure">
+									<span class="price_number"><%= stu.getSname()%></span>
+								</div>
+							</div>
+							<ul class="features">
+							<%
+								if(question!=null && question.getQfuture()==1)
+								{
+								%>
+									<li>未来规划：留 学</li>
+								<%	
+								}
+								else if(question!=null && question.getQfuture()==2)
+								{
+								%>
+									<li>未来规划：读 研</li>
+								<%	
+								}
+								else if(question!=null && question.getQfuture()==3)
+								{
+								%>
+									<li>未来规划：工 作</li>
+								<%	
+								}
+								else
+								{
+								%>
+									<li>未来规划：未 考 虑</li>
+								<%	
+								}
+							%>
+								
+							<%
+								if(question!=null && question.getQpart23().charAt(6)=='1'){
+									out.println("<li>是否注意个人卫生：是</li>");	
+								}
+								else{
+									out.println("<li>是否注意个人卫生：否</li>");	
+								}
+							
+								if(question!=null && question.getQpart23().charAt(11)=='1'){
+									out.println("<li>是否吸烟：是</li>");	
+								}
+								else{
+									out.println("<li>是否吸烟：否</li>");	
+								}
+								
+								if(question!=null && question.getQpart23().charAt(10)=='1'){
+									out.println("<li>是否睡觉打呼噜，磨牙，梦游：是</li>");	
+								}
+								else{
+									out.println("<li>是否睡觉打呼噜，磨牙，梦游：否</li>");	
+								}
+								
+								if(question!=null && question.getQpart23().charAt(8)=='1'){
+									out.println("<li>是否熬夜：是</li>");	
+								}
+								else{
+									out.println("<li>是否熬夜：否</li>");	
+								}
+				%>
+						</ul>
+					</li>
+				
+				<%
+				}
+		   		%>
+		   		</ul>
+		   		<%
+		   }
+		   else
+		   {
+			%>
+				<ul class="pricing_table">
+					<li class="price_block">
+						<div class="price">
+							<div class="price_figure">
+								<span class="price_number">未 匹 配</span>
+							</div>
+						</div>
+						<ul class="features">
+							<li>是否注意个人卫生：</li>
+							<li>是否吸烟：</li>
+							<li>是否睡觉打呼噜，磨牙，梦游：</li>
+							<li>是否熬夜：</li>
+							<li>未来规划：</li>
+						</ul>
+					</li>
+					<li class="price_block">
+						<div class="price">
+							<div class="price_figure">
+								<span class="price_number">未 匹 配</span>
+							</div>
+						</div>
+						<ul class="features">
+							<li>是否注意个人卫生：</li>
+							<li>是否吸烟：</li>
+							<li>是否睡觉打呼噜，磨牙，梦游：</li>
+							<li>是否熬夜：</li>
+							<li>未来规划：</li>
+						</ul>
+					</li>
+					<li class="price_block">
+						<div class="price">
+							<div class="price_figure">
+								<span class="price_number">未 匹 配</span>
+							</div>
+						</div>
+						<ul class="features">
+							<li>是否注意个人卫生：</li>
+							<li>是否吸烟：</li>
+							<li>是否睡觉打呼噜，磨牙，梦游：</li>
+							<li>是否熬夜：</li>
+							<li>未来规划：</li>
+						</ul>
+					</li>
+					<li class="price_block">
+						<div class="price">
+							<div class="price_figure">
+								<span class="price_number">未 匹 配</span>
+							</div>
+						</div>
+						<ul class="features">
+							<li>是否注意个人卫生：</li>
+							<li>是否吸烟：</li>
+							<li>是否睡觉打呼噜，磨牙，梦游：</li>
+							<li>是否熬夜：</li>
+							<li>未来规划：</li>
+						</ul>
+					</li>
+				</ul>   
+			<%
+		   			
+		   }
+			%>
+		   		
+		   		
+				
+							
+							
+					
+	
+		
 </body>
 </html>

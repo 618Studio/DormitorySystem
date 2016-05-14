@@ -27,7 +27,9 @@ function Submit()
 		wrong.style.display = "";
 	}
 	else if(result == '1'){
-		  window.location.href = "question.jsp";  
+		window.location.href = "question.jsp";  
+	}else if(result == '2'){
+		window.location.href = "display.jsp";	
 	}
 	
 	

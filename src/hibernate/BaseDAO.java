@@ -3,8 +3,8 @@ package hibernate;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 public class BaseDAO<T> {
 	
@@ -80,10 +80,6 @@ public class BaseDAO<T> {
 	
 	public static void main(String[] args)
 	{
-		Students stu = new Students("1002","aa","1");
-		//Session session = HibernateUtil.getSessionFactory().openSession();
-		//Transaction trans = session.beginTransaction();
-		BaseDAO<Students> baseDAO = new BaseDAO<Students>();
-		baseDAO.create(stu);
+		Query query;
 	}
 }

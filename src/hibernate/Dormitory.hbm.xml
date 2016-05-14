@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-5-14 18:48:56 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="hibernate.Dormitory" table="dormitory" catalog="DormitorySystem" optimistic-lock="version">
+        <id name="droomNr" type="string">
+            <column name="DroomNr" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="capacity" type="int">
+            <column name="capacity" not-null="true" />
+        </property>
+        <set name="studentses" table="students" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SroomNr" length="10" />
+            </key>
+            <one-to-many class="hibernate.Students" />
+        </set>
+    </class>
+</hibernate-mapping>

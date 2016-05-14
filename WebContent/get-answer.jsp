@@ -7,6 +7,7 @@
 	if(stu==null)
 	{
 		response.sendRedirect("LogIn.jsp");
+		return;
 	}
 	
 	//第一个问题
@@ -66,6 +67,6 @@
 	BaseDAO<Question> baseDAO = new BaseDAO<Question>();
 	Question question = new Question(stu,qfuture,qpart23,qwant);
 	baseDAO.create(question);
-	
+	out.println(question.getSno());
 	out.println("success!");
 %>

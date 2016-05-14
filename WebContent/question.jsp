@@ -7,6 +7,7 @@
 	if(user==null)
 	{
 		response.sendRedirect("LogIn.jsp");
+		return;
 	}
 %>
 <!DOCTYPE html>

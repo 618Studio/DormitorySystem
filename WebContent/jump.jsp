@@ -10,7 +10,7 @@
 			String passwd = request.getParameter("password");
 			BaseDAO<Students> baseDAO = new BaseDAO<Students>();
 			Students stu = baseDAO.find(Students.class,id);
-
+			
 			
 			if(stu!=null)
 			{
@@ -19,8 +19,18 @@
 				{
 					//密码输入正确
 					session.setAttribute("user",stu);
-					//页面重定向
-					out.print("1");
+					
+					//查看是否已经完成匹配
+					BaseDAO<Question> baseDAO_Q = new BaseDAO<Question>();
+					Question question = baseDAO_Q.find(Question.class,id);
+					if(question==null)
+					{
+						out.print("1");	
+					}
+					else
+					{
+						out.print("2");
+					}
 				}
 				else
 				{

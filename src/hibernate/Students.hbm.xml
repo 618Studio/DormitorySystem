@@ -1,24 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-5-11 22:52:13 by Hibernate Tools 4.3.1.Final -->
+<!-- Generated 2016-5-14 18:48:56 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
     <class name="hibernate.Students" table="students" catalog="DormitorySystem" optimistic-lock="version">
         <id name="sno" type="string">
             <column name="Sno" length="12" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="dormitory" class="hibernate.Dormitory" fetch="select">
+            <column name="SroomNr" length="10" />
+        </many-to-one>
         <property name="sname" type="string">
             <column name="Sname" length="10" not-null="true" />
         </property>
         <property name="sgender" type="string">
-            <column name="Sgender" length="2" not-null="true" />
-        </property>
-        <property name="sgpa" type="java.lang.Float">
-            <column name="Sgpa" precision="12" scale="0" />
-        </property>
-        <property name="sroomNr" type="string">
-            <column name="SroomNr" length="10" />
+            <column name="Sgender" length="2" />
         </property>
         <property name="spassword" type="string">
             <column name="Spassword" length="45" />
