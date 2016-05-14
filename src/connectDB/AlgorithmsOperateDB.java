@@ -25,6 +25,7 @@ public class AlgorithmsOperateDB {
 		while(res.next()){
 			String firSno = res.getString("Sno");
 			String firWant = res.getString("Qwant");
+			if(firWant!=null){
 			String testSex1 = "select Sgender from students where Sno = '"+firSno+"'";
 			ResultSet Ssex1 = ConnectDB.query(testSex1);
 			Ssex1.next();
@@ -41,6 +42,7 @@ public class AlgorithmsOperateDB {
 			
 			//判断性别问题
 			if (secSex==firSex){
+				if (secWant!=null){
 				if (secWant.equals(firSno)){
 					String testRepeat = "select * from DormitorySystem.matchstudents where Mno1 = '" + firWant +"'";
 					ResultSet test = ConnectDB.query(testRepeat);
@@ -53,6 +55,12 @@ public class AlgorithmsOperateDB {
 					String insert = "insert into DormitorySystem.matchstudents value('"+ firSno +"','"+ firWant +"',"+ "0" +");";
 					ConnectDB.update(insert);
 				}
+				}
+				else{
+					String insert = "insert into DormitorySystem.matchstudents value('"+ firSno +"','"+ firWant +"',"+ "0" +");";
+					ConnectDB.update(insert);
+				}
+			}
 			}
 		}
 	}
@@ -106,8 +114,16 @@ public class AlgorithmsOperateDB {
 		while(singleWant.next()){
 			String mainNr = singleWant.getString("Mno1");
 			String wantNr = singleWant.getString("Mno2");
-			String addScore = "update score set CompareScore = CompareScore + 3 where SmainNr='"+ mainNr +"' and SotherNr='"+ wantNr +"'; update score set SameScore = SameScore + 3 where SmainNr='"+ mainNr +"' and SotherNr='"+ wantNr +"';";
-			ConnectDB.update(addScore);
+			String check = "SELECT * FROM DormitorySystem.score where SmainNr ='"+ mainNr +"' and SotherNr='"+ wantNr +"';";
+			ResultSet checkRes = ConnectDB.query(check);
+			if(checkRes.next()!=false){
+				String addCompareScore = "update score set CompareScore = CompareScore + 3 where SmainNr='"+ mainNr +"' and SotherNr='"+ wantNr +"'";
+				String addSameScore = "update score set SameScore = SameScore + 3 where SmainNr='"+ mainNr +"' and SotherNr='"+ wantNr +"'";
+				ConnectDB.update(addCompareScore);
+				ConnectDB.update(addSameScore);
+			}
 		}
 	}
+	
+	
 }

@@ -21,7 +21,7 @@ create table question(
 );
 */
 create table score(
-	SmainNr char(12) primary key,
+	SmainNr char(12) not null,
     SotherNr char (12) not null,
     SameScore int,
     CompareScore int,
@@ -30,11 +30,6 @@ create table score(
     constraint other_pk foreign key(SotherNr) references students(Sno)
 );
 /*
-create table scoreOrder(
-	Onr int primary key,
-    Sno char(12),
-    constraint scoreNo_pk foreign key(Sno) references students(Sno)
-)
 
 create table matchstudents(
 	Mno1 char(12) not null,
