@@ -31,10 +31,15 @@
 		            </div>
 		          </div>
 		        </div>
+		        <div style="display:none" id="wrong">
+			        <div class="col-md-5 col-md-offset-9" >
+			        	<h3 class="label label-danger">wrong password!</h3>
+			        </div>
+		        </div>
 		        <div class="form-group">
 		          <div class="col-md-12">
 		          	<div class="control-wrapper">
-		          		<input type="submit" value="Log in" class="btn btn-info">
+		          		<input type="button" value="Log in" class="btn btn-info" onclick="Submit()">
 		          		<a href="javascript:;" class="text-right pull-right" data-toggle="modal" data-target="#templatemo_modal">Forget Password?</a>
 		          	</div>
 		          </div>
@@ -42,6 +47,8 @@
 			</form>
 		</div>
 	</div>
+	
+	
 	<!-- Modal -->
 	<div class="modal fade" id="templatemo_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
@@ -58,8 +65,9 @@
 	      </div>
 	    </div>
 	  </div>
-	</div>
+	</div>	
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>

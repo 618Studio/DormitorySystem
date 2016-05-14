@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="hibernate.*" %>
 <% 
 	//验证是否登录
-	String id = (String)session.getAttribute("user");
-	if(id==null)
+	Students user = (Students)session.getAttribute("user");
+	if(user==null)
 	{
 		response.sendRedirect("LogIn.jsp");
 	}
@@ -26,7 +27,7 @@
 			<div class="fs-title">
 				<h1>问卷调查</h1>
 			</div>
-			<form id="myform" class="fs-form fs-form-full" autocomplete="off" method="GET" action="get-answer.jsp">
+			<form id="myform" class="fs-form fs-form-full" autocomplete="off" method="post" action="get-answer.jsp">
 				<ol class="fs-fields">					
 					<li data-input-trigger>
 						<label class="fs-field-label fs-anim-upper" for="q1" data-info="About future">你对未来有什么打算?</label>
