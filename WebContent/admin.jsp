@@ -21,7 +21,7 @@
 						<a class="active-menu" href="admin.jsp"><i class="fa fa-dashboard"></i> Dashboard</a>
 					</li>
                 	<li>
-                		<a href="table.jsp"><i class="fa fa-table"></i> Responsive Tables</a>
+                		<a href="table.jsp"><i class="fa fa-table"></i> Table</a>
                 	</li>
             	</ul>
         	</div>
