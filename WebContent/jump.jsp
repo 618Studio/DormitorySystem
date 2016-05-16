@@ -4,7 +4,7 @@
 
 
 <%
-		if(request.getParameter("studentID")!=null)
+		if(request.getParameter("studentID")!=null && !request.getParameter("studentID").equals("admin"))
 		{
 			String id = request.getParameter("studentID");
 			String passwd = request.getParameter("password");
@@ -41,6 +41,22 @@
 			else
 			{
 				//没有该账号下
+				out.print("0");
+			}
+		}
+		else if(request.getParameter("studentID").equals("admin"))
+		{
+			String passwd = request.getParameter("password");
+			if(passwd.equals("123456"))
+			{
+				
+				//登陆管理员界面
+				String admin = "admin";
+				session.setAttribute("admin",admin);
+				out.print("3");
+			}
+			else
+			{
 				out.print("0");
 			}
 		}

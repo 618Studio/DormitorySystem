@@ -61,12 +61,9 @@
 	
 	
 	//存储到数据库
-	out.println(stu.getSno());
-	out.println(qfuture);
-	out.println(qpart23);
 	BaseDAO<Question> baseDAO = new BaseDAO<Question>();
 	Question question = new Question(stu,qfuture,qpart23,qwant);
 	baseDAO.create(question);
-	out.println(question.getSno());
-	out.println("success!");
+
+	response.sendRedirect("SubmitSuccessfully.jsp");
 %>

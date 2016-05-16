@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="hibernate.*" %>
+<%@ page import="org.hibernate.*" %>
+<%@ page import="java.util.List" %>
+<%
+	//验证是否登陆
+	String admin = (String)session.getAttribute("admin");
+	if(admin==null)
+	{
+		response.sendRedirect("LogIn.jsp");
+		return;
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -27,6 +39,9 @@
                     <li>
                     	<a href="table.jsp" class="active-menu"><i class="fa fa-table"></i> Responsive Tables</a>
                     </li>
+                    <li>
+                		<a href="uploadfile.jsp"><i class="fa fa-table"></i> File Uploading</a>
+                	</li>
                 </ul>
             </div>
         </nav>
@@ -38,8 +53,7 @@
         		</h1>
 				<ol class="breadcrumb">
 					<li><a href="#">Home</a></li>
-					<li><a href="#">Tables</a></li>
-					<li class="active">Data</li>
+					<li class="active">Tables</li>
 				</ol> 
 			</div>
 			<div id="page-inner">
@@ -47,24 +61,47 @@
 				<div class="col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-                             	学生提交问卷情况
+                             	Detail
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th>学号</th>
-                                            <th>姓名</th>
-                                            <th>是否填写问卷</th>
+                                            <th>Student ID</th>
+                                            <th>Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+                                            <th>Whether to fill</th>
+                                            <th>Room&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="odd gradeX">
-                                            <td>201419630107</td>
-                                            <td>华宗汉</td>
-                                            <td>是</td>
-                                        </tr>
+                                    <%
+                                    	Session sess = HibernateUtil.getSessionFactory().openSession();
+                                    	Query query = sess.createQuery("select stu from Students stu");
+                                    	List<Students> list = query.list();
+                                    	for(Students stu: list)
+                                    	{
+                                    		out.println("<tr class=\"odd gradeX\">");
+                                    		out.println("<td>"+stu.getSno()+"</td>");
+                                    		out.println("<td>"+stu.getSname()+"</td>");
+                                    		if(stu.getQuestion()==null){
+                                    			out.println("<td style='color:green'>是</td>");
+                                    		}
+                                    		else{
+                                    			out.println("<td style='color:red'>否</td>");
+                                    		}
+                                    		if(stu.getDormitory()!=null){
+                                    			out.println("<td>"+stu.getDormitory().getDroomNr()+"</td>");
+                                    		}
+                                    		else
+                                    		{
+                                    			out.println("<td>无</td>");
+                                    		}
+                                    		out.println("</tr>");
+                                    		
+                                    	}
+                                    	sess.close();
+                                    %>
                                     </tbody>
                                 </table>
                             </div>
@@ -88,7 +125,6 @@
     		$('#dataTables-example').dataTable();
         });
     </script>
-    <!-- Custom Js -->
-    <script src="assets/js/custom-scripts.js"></script>
+
 </body>
 </html>

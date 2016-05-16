@@ -30,6 +30,8 @@ function Submit()
 		window.location.href = "question.jsp";  
 	}else if(result == '2'){
 		window.location.href = "display.jsp";	
+	}else if(result == '3'){
+		window.location.href = "admin.jsp";
 	}
 	
 	
