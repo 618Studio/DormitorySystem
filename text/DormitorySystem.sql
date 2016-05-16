@@ -19,7 +19,7 @@ create table question(
     Qberth int not null,
     constraint sno_pk foreign key(Sno) references students(Sno)
 );
-*/
+
 create table score(
 	SmainNr char(12) not null,
     SotherNr char (12) not null,
@@ -29,7 +29,7 @@ create table score(
     constraint main_pk foreign key(SmainNr) references students(Sno),
     constraint other_pk foreign key(SotherNr) references students(Sno)
 );
-/*
+
 
 create table matchstudents(
 	Mno1 char(12) not null,
@@ -38,3 +38,9 @@ create table matchstudents(
     constraint no1_pk foreign key(Mno1) references students(Sno),
     constraint no2_pk foreign key(Mno2) references students(Sno)
 )*/
+
+create table standardScore(
+	Sno char(12) primary key,
+    Score int,
+    constraint standard_fk foreign key(Sno) references students(Sno)
+)

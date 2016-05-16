@@ -95,6 +95,12 @@ public class AlgorithmsOperateDB {
 		return result;
 	}
 
+	//存储标准对比
+	public static void storeStandardScore(String sno,int score){
+		String insert = "insert into standardScore values('"+ sno +"',"+score+")";
+		ConnectDB.update(insert);
+	}
+	
 	//存入数据库第一个相同选项分值
 	public static void storeSameScore(Score score){
 		String insert = "insert into score(SmainNr,SotherNr,SameScore) values('"+ score.getMySno() +"','"+score.getOtherSno()+"',"+score.getScore()+")";
@@ -125,5 +131,42 @@ public class AlgorithmsOperateDB {
 		}
 	}
 	
+	//返回所有问题做标准比对
+	public static Question[] getAllQuestion(){
+		Question[] result;
+		String sql = "select * from question";
+		ResultSet res = ConnectDB.query(sql);
+		try {
+			res.last();
+			int row = res.getRow();
+	        res.beforeFirst();//光标回滚
+	        	result = new Question[row];
+	        	int j=0;
+	        	//将文件数据从数据库中读取写入javabean中
+	        	while(res.next()){
+	        		result[j++] = new Question(
+	        				res.getString("Sno"),
+	        				res.getInt("Qfuture"),
+	        				res.getString("Qpart2_3"),
+	        			    res.getString("Qwant")
+	        				);
+	        	}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}     
+		return result;
+	}
 	
+	public static ResultSet getleftStudents(){
+		String sql = "select Sno from question where Sno in (select Sno from students where SroomNr is null)";
+		return ConnectDB.query(sql);
+	}
+	
+	public static void clearScore(){
+		String truncateScore = "truncate table score;";
+		String truncateStandard = "truncate table standardScore;";
+		ConnectDB.query(truncateScore);
+		ConnectDB.query(truncateStandard);
+	}
 }

@@ -3,9 +3,11 @@ package algorithms;
 import javaBean.Question;
 import javaBean.Score;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import connectDB.AlgorithmsOperateDB;
+import connectDB.ChooseOperateDB;
 
 public class DealQuestion {
 	private static Question[][] male;
@@ -58,6 +60,14 @@ public class DealQuestion {
 		
 		//考虑单向选择增加权重Test ok!
 		addWeight();
+		
+		//标准算法处理Test ok!
+		calculateStandardScore();
+	}
+	
+	public void secondDealQuestion(){
+		AlgorithmsOperateDB.clearScore();
+		ResultSet leftQuestion = AlgorithmsOperateDB.getleftStudents();
 	}
 	
 	private void dealWant(){
@@ -125,6 +135,39 @@ public class DealQuestion {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void calculateStandardScore(){
+		Question[] question = AlgorithmsOperateDB.getAllQuestion();
+		//根据标准情况进行计分比对
+		for(int i=0;i<question.length;i++){
+			String sno = question[i].getSno();
+			String part2_3 = question[i].getPart2_3();
+			int score = standard(part2_3);
+			AlgorithmsOperateDB.storeStandardScore(sno, score);
+		}
+		System.out.println("5、与标准对比算法处理结束！");
+	}
+	
+	private int standard(String part2_3){
+		int count = 0;
+		if (part2_3.charAt(0) == '0') count++;
+		if (part2_3.charAt(1) == '1') count++;
+		if (part2_3.charAt(2) == '0') count++;
+		if (part2_3.charAt(3) == '1') count++;
+		if (part2_3.charAt(4) == '1') count++;
+		if (part2_3.charAt(5) == '1') count++;
+		if (part2_3.charAt(6) == '1') count++;
+		if (part2_3.charAt(7) == '1') count++;
+		if (part2_3.charAt(8) == '0') count++;
+		if (part2_3.charAt(9) == '1') count++;
+		if (part2_3.charAt(10) == '0') count++;
+		if (part2_3.charAt(11) == '0') count++;
+		if (part2_3.charAt(12) == '1') count++;
+		if (part2_3.charAt(13) == '1') count++;
+		if (part2_3.charAt(14) == '1') count++;
+		
+		return count;
 	}
 	
 	private int compare(String nowPart2_3,String otherPart2_3){
