@@ -63,7 +63,7 @@
 				</ol> 
 			</div>
 			<div id="page-inner">
-				<form  class="form-horizontal" enctype="multipart/form-data">
+				<form  class="form-horizontal" enctype="multipart/form-data" method="post">
 					<div class="form-group"  style="padding-top:50px">
 						<label  class="col-lg-2 col-lg-offset-2 control-label">Submit Dormitories</label>
 						<div class="col-lg-4">
