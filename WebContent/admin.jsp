@@ -66,8 +66,15 @@
 								//计算填写问卷人数
 								query = sess.createQuery("select count(*) from Question q");
 								int sumbitCount = Integer.valueOf(query.uniqueResult().toString());
+								int percent = 0;
+								if(totalCount!=0)
+								{
+									percent = sumbitCount*100/totalCount;
+								}
+								else{
+									percent = 0;
+								}
 								
-								int percent =  sumbitCount*100/totalCount;
 								sess.close();
 								int percent2 = 100 - percent;
 															

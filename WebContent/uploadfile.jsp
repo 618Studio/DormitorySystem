@@ -13,7 +13,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>table</title>
+	<title>Uploading</title>
 	<link href="fileinput/css/default.css" rel="stylesheet" />
 	    
 	<link href="assets/css/bootstrap.css" rel="stylesheet" />
@@ -63,7 +63,7 @@
 				</ol> 
 			</div>
 			<div id="page-inner">
-				<form  class="form-horizontal" enctype="multipart/form-data" method="post">
+				<form  class="form-horizontal" enctype="multipart/form-data" method="post" action="getfile">
 					<div class="form-group"  style="padding-top:50px">
 						<label  class="col-lg-2 col-lg-offset-2 control-label">Submit Dormitories</label>
 						<div class="col-lg-4">

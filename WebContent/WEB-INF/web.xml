@@ -12,7 +12,7 @@
   </welcome-file-list>
   <servlet>
   	<servlet-name>GetFile</servlet-name>
-  	<servlet-class>servlet.GetFile</servlet-class>
+  	<servlet-class>servlet.GetFiles</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>GetFile</servlet-name>

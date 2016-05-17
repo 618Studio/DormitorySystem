@@ -11,6 +11,7 @@
 		response.sendRedirect("LogIn.jsp");
 		return;
 	}
+	response.setContentType("text/html; charset=UTF-8");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -85,6 +86,7 @@
                                     		out.println("<td>"+stu.getSno()+"</td>");
                                     		out.println("<td>"+stu.getSname()+"</td>");
                                     		if(stu.getQuestion()==null){
+                               
                                     			out.println("<td style='color:green'>是</td>");
                                     		}
                                     		else{
