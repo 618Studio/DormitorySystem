@@ -158,9 +158,30 @@ public class AlgorithmsOperateDB {
 		return result;
 	}
 	
-	public static ResultSet getleftStudents(){
-		String sql = "select Sno from question where Sno in (select Sno from students where SroomNr is null)";
-		return ConnectDB.query(sql);
+	public static Question[] getleftStudentsQuestion(int sex){
+		Question[] result;
+		String sql = "select * from question where Sno in (select Sno from students where SroomNr is null and Sgender = "+sex+")";
+		ResultSet res = ConnectDB.query(sql);
+		try {
+			res.last();
+			int row = res.getRow();
+	        res.beforeFirst();//光标回滚
+	        	result = new Question[row];
+		    int j=0;
+		    	//将文件数据从数据库中读取写入javabean中
+		    	while(res.next()){
+		        result[j++] = new Question(
+		        			res.getString("Sno"),
+		        			res.getInt("Qfuture"),
+		    				res.getString("Qpart2_3"),
+		    			    res.getString("Qwant")
+        				);
+		    }
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}     
+		return result;
 	}
 	
 	public static void clearScore(){

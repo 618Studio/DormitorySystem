@@ -3,11 +3,8 @@ package algorithms;
 import javaBean.Question;
 import javaBean.Score;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import connectDB.AlgorithmsOperateDB;
-import connectDB.ChooseOperateDB;
 
 public class DealQuestion {
 	private static Question[][] male;
@@ -65,9 +62,53 @@ public class DealQuestion {
 		calculateStandardScore();
 	}
 	
-	public void secondDealQuestion(){
-		AlgorithmsOperateDB.clearScore();
-		ResultSet leftQuestion = AlgorithmsOperateDB.getleftStudents();
+	public void secondDealQuestion(int sex){
+		Question[] question = AlgorithmsOperateDB.getleftStudentsQuestion(sex);
+		
+		//same 
+		if (question.length>4){
+			for (int j=0;j<question.length;j++){			
+				String nowSno = question[j].getSno();
+				String nowPart2_3 = question[j].getPart2_3();	
+				int standaredScore = standard(nowPart2_3);
+				AlgorithmsOperateDB.storeStandardScore(nowSno, standaredScore);
+				
+				for (int k=j+1;k<question.length;k++){			
+					String otherSno = question[k].getSno();
+					//if (nowSno.equals(otherSno)) break;
+					String otherPart2_3 = question[k].getPart2_3();
+					
+					//调用相同比较计分函数
+					int count = same(nowPart2_3, otherPart2_3);
+					
+					Score score1 = new Score(nowSno,otherSno,count);	
+					Score score2 = new Score(otherSno,nowSno,count);
+					AlgorithmsOperateDB.storeSameScore(score1);
+					AlgorithmsOperateDB.storeSameScore(score2);
+				}
+			}
+			//compare
+			for (int j=0;j<question.length;j++){
+				String nowSno = question[j].getSno();
+				String nowPart2_3 = question[j].getPart2_3();			
+				for (int k=0;k<question.length;k++){		
+					if (k!=j){
+					String otherSno = question[k].getSno();
+					String otherPart2_3 = question[k].getPart2_3();
+					
+					//调用比较函数计分
+					int count = compare(nowPart2_3, otherPart2_3);
+					
+					Score score = new Score(nowSno,otherSno,count);
+					AlgorithmsOperateDB.storeCompareScore(score);
+					}
+				}
+			}
+			
+			//add weight
+			addWeight();
+			
+		}
 	}
 	
 	private void dealWant(){

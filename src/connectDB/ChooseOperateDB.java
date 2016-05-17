@@ -9,6 +9,11 @@ public class ChooseOperateDB {
 		return ConnectDB.query(getorder);
 	}
 	
+	public static ResultSet getOrder(){
+		String getorder = "SELECT Sno,Score FROM DormitorySystem.standardScore order by Score";
+		return ConnectDB.query(getorder);
+	}
+	
 	public static ResultSet getSameList(String mainSno){
 		String getsamelist = "SELECT SotherNr FROM DormitorySystem.score where SmainNr = '"+mainSno+"' order by SameScore DESC;";
 		return ConnectDB.query(getsamelist);
@@ -56,5 +61,10 @@ public class ChooseOperateDB {
 		ResultSet res = ConnectDB.query(check);
 		res.next();
 		return res.getInt("Sgender");
+	}
+	
+	public static ResultSet finalCheck(int sex){
+		String finalCheck = "select Sno from question where Sno in(select Sno from students where SroomNr is null and Sgender = "+sex+")";
+		return ConnectDB.query(finalCheck);
 	}
 }
