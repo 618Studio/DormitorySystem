@@ -79,16 +79,16 @@ public class ChooseOperateDB {
 	
 	public static void clearAllData(){
 		String truncateMatch = "truncate table matchstudents;";
-		String truncateScore = "truncate table score;";
-		String truncateStandard = "truncate table standardScore;";
-		String truncateQuestion = "truncate table question;";
+		String truncateScore = "delete from score where 1=1;";
+		String truncateStandard = "delete from standardScore where 1=1;";
+		String truncateQuestion = "delete from question where 1=1;";
 		String truncateStudent = "delete from students where 1=1;";
 		String truncateDormitory = "delete from dormitory where 1=1;";
-		ConnectDB.query(truncateMatch);
-		ConnectDB.query(truncateScore);
-		ConnectDB.query(truncateStandard);
-		ConnectDB.query(truncateQuestion);
-		ConnectDB.query(truncateStudent);
-		ConnectDB.query(truncateDormitory);
+		ConnectDB.update(truncateMatch);
+		ConnectDB.update(truncateScore);
+		ConnectDB.update(truncateStandard);
+		ConnectDB.update(truncateQuestion);
+		ConnectDB.update(truncateStudent);
+		ConnectDB.update(truncateDormitory);
 	}
 }
