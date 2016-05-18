@@ -75,7 +75,7 @@
 									percent = 0;
 								}
 								
-								sess.close();
+								
 								int percent2 = 100 - percent;
 															
 							%>
@@ -104,11 +104,32 @@
 						</div>
 					
 				</div>
-				<div class="col-md-6 col-md-offset-4" style="top:40px">
+				
+				<div class="col-md-6 col-md-offset-4" style="top:50px">
 					<p>
-					  <button type="button" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
-					</p>	
+					<%
+					query = sess.createQuery("select count(*) from Students stu where stu.dormitory is not null");
+					int ifmatching = Integer.valueOf(query.uniqueResult().toString());			
+					if(ifmatching==0)
+					{
+						%>
+							<button type="button" class="btn btn-primary btn-lg" onclick="Submit()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
+						<% 
+					}
+					else{
+						%>
+							<button type="button" class="btn btn-primary btn-lg" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
+						<%
+					}
+					%>
+					  		
+					</p>
+						
 				</div>
+				<div class="alert alert-success alert-dismissible col-md-7 col-md-offset-2" role="alert" style="text-align:center;margin-top:80px;display:none">
+					<input type="button" class="close" data-dismiss="alert" aria-label="Close" /><h3>&nbsp;&nbsp;&nbsp;&nbsp;Match&nbsp; Successfully &nbsp;!</h3></div>
+				
+				
 					
 			</div>
 		</div>

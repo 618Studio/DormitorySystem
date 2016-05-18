@@ -11,11 +11,20 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>GetFile</servlet-name>
-  	<servlet-class>servlet.GetFiles</servlet-class>
+    <servlet-name>GetFile</servlet-name>
+    <servlet-class>servlet.GetFiles</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>GetFile</servlet-name>
-  	<url-pattern>/getfile</url-pattern>
+    <servlet-name>GetFile</servlet-name>
+    <url-pattern>/getfile</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>BeginMatching</servlet-name>
+	     <servlet-class>servlet.BeginMatching</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	     <servlet-name>BeginMatching</servlet-name>
+	<url-pattern>/match</url-pattern>
+  </servlet-mapping>	
+    
 </web-app>

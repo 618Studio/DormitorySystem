@@ -61,7 +61,7 @@ public class GetFiles extends HttpServlet {
 	
 		File file1 = null ,file2 = null;
 		DiskFileItemFactory factory = new DiskFileItemFactory();
-		factory.setSizeThreshold(5*1024); //最大缓存  
+		factory.setSizeThreshold(10*1024); //最大缓存  
 
 		ServletFileUpload  fileUpload = new ServletFileUpload (factory);
 		
@@ -86,7 +86,7 @@ public class GetFiles extends HttpServlet {
 					ous.write(buffer, 0, len);
 					
 				}
-				System.out.println("文件上传成功"+this.getServletContext().getRealPath("temp")+
+				System.out.println("文件上传成功"+this.getServletContext().getRealPath("temp")+"\\"+
 						remoteFile.getName());
 			}finally{
 				ous.close();
@@ -110,7 +110,7 @@ public class GetFiles extends HttpServlet {
 					ous.write(buffer, 0, len);
 					
 				}
-				System.out.println("文件上传成功"+this.getServletContext().getRealPath("temp")+
+				System.out.println("文件上传成功"+this.getServletContext().getRealPath("temp")+"\\"+
 						remoteFile.getName());
 			}finally{
 				ous.close();
@@ -127,7 +127,9 @@ public class GetFiles extends HttpServlet {
 			query.executeUpdate();
 			session.close();
 					
-			CsvReader reader = new CsvReader(file1.getAbsolutePath(),',',Charset.forName("SJIS"));
+			CsvReader reader = new CsvReader(file1.getAbsolutePath(),',',Charset.forName("UTF-8"));
+			reader.readHeaders() ;
+			
 			while(reader.readRecord()){
 				Dormitory dor = new Dormitory();
 				
@@ -151,17 +153,17 @@ public class GetFiles extends HttpServlet {
 			query = session.createQuery("delete from Students where 1=1");
 			query.executeUpdate();
 			session.close();
+			
 			reader = new CsvReader(file2.getAbsolutePath(),',',Charset.forName("utf-8"));
 			reader.readHeaders() ;
-			
-			reader.readHeaders();
 			
 			while(reader.readRecord()){
 				Students stu = new Students();
 				String sno= (String)reader.get(0);
 				stu.setSno(sno);
 				
-				String sname = new String(((String)reader.get(1)).getBytes(),"utf-8");
+			
+				String sname = (String)reader.get(1);
 				stu.setSname(sname);
 				
 				String sgender = (String)reader.get(2);
@@ -172,8 +174,7 @@ public class GetFiles extends HttpServlet {
 			
 			//删除两个文件
 				
-			file1.delete();
-			file2.delete();
+			
 		}
 		catch(IOException e)
 		{
@@ -190,8 +191,8 @@ public class GetFiles extends HttpServlet {
 		out.println("		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
 		out.println("	</head>");
 		out.println("	<body>");
-		out.println("		<p>上传成功！</p>");
-		out.println("		<a href=\"admin.jsp\">返回</a>");
+		out.println("		<h1 style=\"color:green;text-align:center\">Upload Successfully！</h1>");
+		out.println("		<div style=\"color:green;text-align:center;font-size:16px;\"><a href=\"admin.jsp\">Back</a></div>");
 		out.println("	</body>");
 		out.println("</html>");
 		

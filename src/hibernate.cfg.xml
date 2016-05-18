@@ -6,14 +6,14 @@
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">123456</property>
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.2.1:3306/suibian</property>
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.2.1:3306/suibian?useUnicode=true&amp;characterEncoding=utf-8</property>
         <property name="hibernate.connection.username">zcy</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        
         <mapping resource="hibernate/Dormitory.hbm.xml" />
     	<mapping resource="hibernate/Question.hbm.xml" />
     	<mapping resource="hibernate/Students.hbm.xml" />	
     </session-factory>
+    
 
 </hibernate-configuration>
     
