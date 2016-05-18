@@ -10,10 +10,12 @@ public class ChooesRoommates {
 	final static int MALE = 1;
 	final static int FEMALE = 2; 
 	
+	//清除数据库，已修改
 	public static void clearAllData(){
 		ChooseOperateDB.clearAllData();
 	}
 	
+	//给前端调用方法启动算法
 	public void chooseRoomMates(){
 		ChooseOperateDB.clearDB();
 		DealQuestion test = new DealQuestion();		
@@ -27,7 +29,8 @@ public class ChooesRoommates {
 		}
 	}
 	
-	public static void firstChoose() throws SQLException{
+	//第一次选择
+	private static void firstChoose() throws SQLException{
 		for (int i=1;i<5;i++){
 			ResultSet order = ChooseOperateDB.getOrder(i);
 			order.last();
@@ -91,7 +94,8 @@ public class ChooesRoommates {
 		}
 	}
 
-	public static void secondChoose() throws SQLException{
+	//第二次选择
+	private static void secondChoose() throws SQLException{
 		AlgorithmsOperateDB.clearScore();
 		DealQuestion obj = new DealQuestion();
 		obj.secondDealQuestion(MALE);
@@ -157,7 +161,8 @@ public class ChooesRoommates {
 		}
 	}
 	
-	public static void thirdChoose() throws SQLException{
+	//第三次选择
+	private static void thirdChoose() throws SQLException{
 		String roomNr = "0";
 		String[] Sno = new String[4];
 		int i=0;
@@ -187,6 +192,7 @@ public class ChooesRoommates {
 		ChooseOperateDB.set4PeopleRoom(Sno, roomNr);
 	}
 	
+	//检查同一寝室中是否有相同的人
 	private static boolean checkSameSno(String[] sno,String nowSno){
 		boolean flag = true;
 		for(int i=0;i<sno.length;i++){
@@ -195,6 +201,7 @@ public class ChooesRoommates {
 		return flag;
 	}
 	
+	//检查是否有相互选择的情况
 	private static String checkMatch(String sno){
 		ResultSet res = ChooseOperateDB.checkMatch(sno);
 		String result = null;
