@@ -1,5 +1,5 @@
 package hibernate;
-// Generated 2016-5-17 22:41:26 by Hibernate Tools 4.3.1.Final
+// Generated 2016-5-18 10:24:38 by Hibernate Tools 4.3.1.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,23 +13,26 @@ public class Dormitory implements java.io.Serializable {
 	private int capacity;
 	private int finish;
 	private int sex;
+	private String orientation;
 	private Set<Students> studentses = new HashSet<Students>(0);
 
 	public Dormitory() {
 	}
 
-	public Dormitory(String droomNr, int capacity, int finish, int sex) {
+	public Dormitory(String droomNr, int capacity, int finish, int sex, String orientation) {
 		this.droomNr = droomNr;
 		this.capacity = capacity;
 		this.finish = finish;
 		this.sex = sex;
+		this.orientation = orientation;
 	}
 
-	public Dormitory(String droomNr, int capacity, int finish, int sex, Set<Students> studentses) {
+	public Dormitory(String droomNr, int capacity, int finish, int sex, String orientation, Set<Students> studentses) {
 		this.droomNr = droomNr;
 		this.capacity = capacity;
 		this.finish = finish;
 		this.sex = sex;
+		this.orientation = orientation;
 		this.studentses = studentses;
 	}
 
@@ -63,6 +66,14 @@ public class Dormitory implements java.io.Serializable {
 
 	public void setSex(int sex) {
 		this.sex = sex;
+	}
+
+	public String getOrientation() {
+		return this.orientation;
+	}
+
+	public void setOrientation(String orientation) {
+		this.orientation = orientation;
 	}
 
 	public Set<Students> getStudentses() {

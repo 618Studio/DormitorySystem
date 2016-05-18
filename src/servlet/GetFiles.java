@@ -27,7 +27,9 @@ import com.csvreader.CsvReader;
 import hibernate.BaseDAO;
 import hibernate.Dormitory;
 import hibernate.HibernateUtil;
+import hibernate.Question;
 import hibernate.Students;
+
 
 /**
  * Servlet implementation class GetFiles
@@ -121,38 +123,57 @@ public class GetFiles extends HttpServlet {
 			BaseDAO<Students> stu_DAO = new BaseDAO<Students>();
 			BaseDAO<Dormitory> dor_DAO = new BaseDAO<Dormitory>();
 			
-			//读取寝室CSV文件，存入数据库
+			
+			//清空寝室数据表
 			Session session = HibernateUtil.getSessionFactory().openSession();
 			Query query = session.createQuery("delete from Dormitory where 1=1");
 			query.executeUpdate();
 			session.close();
-					
+			
+			//清空问题数据表
+			session = HibernateUtil.getSessionFactory().openSession();
+			query = session.createQuery("delete from Question where 1=1");
+			query.executeUpdate();
+			session.close();
+			
+			//清空学生数据表
+			session = HibernateUtil.getSessionFactory().openSession();
+			query = session.createQuery("delete from Students where 1=1");
+			query.executeUpdate();
+			session.close();
+			
+			
+			
+			
+			//读取寝室CSV文件，存入数据库
 			CsvReader reader = new CsvReader(file1.getAbsolutePath(),',',Charset.forName("UTF-8"));
 			reader.readHeaders() ;
 			
 			while(reader.readRecord()){
 				Dormitory dor = new Dormitory();
-				
-
+			
 				String droomNr = (String)reader.get(0);
 				dor.setDroomNr(droomNr);
 				
-			
 				int capacity = Integer.parseInt((String)reader.get(1));
 				
 				dor.setCapacity(capacity);
 				
 				dor.setFinish(0);
 				
+				int sex = Integer.parseInt((String)reader.get(3));
+				dor.setSex(sex);
+				
+				String orientation = (String)reader.get(4);
+				dor.setOrientation(orientation); 
+				
 				dor_DAO.create(dor);
 			}		
 			reader.close();
 			
 			//读取学生CSV文件，存入数据库
-			session = HibernateUtil.getSessionFactory().openSession();
-			query = session.createQuery("delete from Students where 1=1");
-			query.executeUpdate();
-			session.close();
+			//清空学生数据表
+			
 			
 			reader = new CsvReader(file2.getAbsolutePath(),',',Charset.forName("utf-8"));
 			reader.readHeaders() ;
@@ -172,8 +193,12 @@ public class GetFiles extends HttpServlet {
 			}
 			reader.close();
 			
+			
+			
 			//删除两个文件
-				
+			file1.delete();
+			file2.delete();
+			
 			
 		}
 		catch(IOException e)
@@ -191,7 +216,7 @@ public class GetFiles extends HttpServlet {
 		out.println("		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">");
 		out.println("	</head>");
 		out.println("	<body>");
-		out.println("		<h1 style=\"color:green;text-align:center\">Upload Successfully！</h1>");
+		out.println("		<h1 style=\"color:green;text-align:center;margin-top:50px;\">Upload Successfully！</h1>");
 		out.println("		<div style=\"color:green;text-align:center;font-size:16px;\"><a href=\"admin.jsp\">Back</a></div>");
 		out.println("	</body>");
 		out.println("</html>");

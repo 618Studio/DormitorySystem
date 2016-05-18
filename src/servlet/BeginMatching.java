@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import algorithms.ChooesRoommates;
+
 /**
  * Servlet implementation class BeginMatching
  */
@@ -38,6 +40,9 @@ public class BeginMatching extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//begin matching
+		System.out.println("begin match");
+		ChooesRoommates cr = new ChooesRoommates();
+		cr.chooseRoomMates();
 		PrintWriter out = response.getWriter();
 		out.print('1');
 	}

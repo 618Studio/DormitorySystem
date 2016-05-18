@@ -62,10 +62,11 @@
 								Session sess = HibernateUtil.getSessionFactory().openSession();
 								Query query = sess.createQuery("select count(*) from Students stu");
 								int totalCount = Integer.valueOf(query.uniqueResult().toString());
-								
+								System.out.println(totalCount);
 								//计算填写问卷人数
 								query = sess.createQuery("select count(*) from Question q");
 								int sumbitCount = Integer.valueOf(query.uniqueResult().toString());
+								System.out.println(sumbitCount);
 								int percent = 0;
 								if(totalCount!=0)
 								{
@@ -118,7 +119,7 @@
 					}
 					else{
 						%>
-							<button type="button" class="btn btn-primary btn-lg" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
+							<button type="button" class="btn btn-primary btn-lg" onclick="Submit()" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
 						<%
 					}
 					%>
@@ -126,8 +127,8 @@
 					</p>
 						
 				</div>
-				<div class="alert alert-success alert-dismissible col-md-7 col-md-offset-2" role="alert" style="text-align:center;margin-top:80px;display:none">
-					<input type="button" class="close" data-dismiss="alert" aria-label="Close" /><h3>&nbsp;&nbsp;&nbsp;&nbsp;Match&nbsp; Successfully &nbsp;!</h3></div>
+				<div id="alert" class="alert alert-success alert-dismissible col-md-7 col-md-offset-2" role="alert" style="text-align:center;margin-top:80px;display:none">
+					<input type="button" id="button" class="close" data-dismiss="alert" aria-label="Close" /><h3>&nbsp;&nbsp;&nbsp;&nbsp;Match&nbsp; Successfully &nbsp;!</h3></div>
 				
 				
 					
@@ -141,7 +142,7 @@
     <!-- Morris Chart Js -->
 	<script src="assets/js/easypiechart.js"></script>
 	<script src="assets/js/easypiechart-data.js"></script>
-	
+	<script src="js/admin.js"></script>
 
 	
 

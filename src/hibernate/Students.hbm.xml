@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-5-17 22:41:26 by Hibernate Tools 4.3.1.Final -->
+<!-- Generated 2016-5-18 10:24:38 by Hibernate Tools 4.3.1.Final -->
 <hibernate-mapping>
-    <class name="hibernate.Students" table="students" catalog="suibian" optimistic-lock="version">
+    <class name="hibernate.Students" table="students" catalog="DormitorySystem" optimistic-lock="version">
         <id name="sno" type="string">
             <column name="Sno" length="12" />
             <generator class="assigned" />
