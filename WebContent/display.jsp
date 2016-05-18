@@ -36,7 +36,6 @@
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<style type="text/css" media="screen">
-		@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 		
 		* {margin: 0; padding: 0; }
 		body {

@@ -22,13 +22,11 @@
 
     <!-- FontAwesome Styles-->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- Morris Chart Styles-->
     <!-- Custom Styles-->
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
    	<link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <!-- TABLE STYLES-->
-    <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+   
 
  
 
@@ -43,7 +41,7 @@
 						<a href="admin.jsp"><i class="fa fa-dashboard"></i>Dashboard</a>
                     </li>
                     <li>
-                    	<a href="table.jsp"><i class="fa fa-table"></i> Responsive Tables</a>
+                    	<a href="table.jsp"><i class="fa fa-table"></i> Table</a>
                     </li>
                     <li>
                 		<a  class="active-menu" href="uploadfile.jsp"><i class="fa fa-table"></i> File Uploading</a>
@@ -88,11 +86,11 @@
         	</div>
 		</div>
 	</div>
-	<script src="js/jquery.js"></script>
+	<script src="assets/js/jquery-1.10.2.js"></script>
     <!-- Bootstrap Js -->
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- Metis Menu Js -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+
     <!-- File -->
     <script src="fileinput/js/fileinput.js"></script>
 

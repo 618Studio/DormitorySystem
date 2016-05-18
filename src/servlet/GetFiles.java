@@ -19,15 +19,12 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.hibernate.Query;
-import org.hibernate.Session;
 
 import com.csvreader.CsvReader;
 
+import algorithms.ChooesRoommates;
 import hibernate.BaseDAO;
 import hibernate.Dormitory;
-import hibernate.HibernateUtil;
-import hibernate.Question;
 import hibernate.Students;
 
 
@@ -123,29 +120,10 @@ public class GetFiles extends HttpServlet {
 			BaseDAO<Students> stu_DAO = new BaseDAO<Students>();
 			BaseDAO<Dormitory> dor_DAO = new BaseDAO<Dormitory>();
 			
-			//清空问题数据表
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			Query query = session.createQuery("delete from Question where 1=1");
-			query.executeUpdate();
-			session.close();
+		
+			ChooesRoommates.clearAllData();
 			
-			//清空学生数据表
-			session = HibernateUtil.getSessionFactory().openSession();
-			query = session.createQuery("delete from Students where 1=1");
-			query.executeUpdate();
-			session.close();
-			
-			//清空寝室数据表
-			session = HibernateUtil.getSessionFactory().openSession();
-		    query = session.createQuery("delete from Dormitory where 1=1");
-			query.executeUpdate();
-			session.close();
-			
-			
-			
-			
-			
-			
+			System.out.println("sss");	
 			//读取寝室CSV文件，存入数据库
 			CsvReader reader = new CsvReader(file1.getAbsolutePath(),',',Charset.forName("UTF-8"));
 			reader.readHeaders() ;

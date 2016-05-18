@@ -10,7 +10,7 @@ public class ChooesRoommates {
 	final static int MALE = 1;
 	final static int FEMALE = 2; 
 	
-	public void clearAllData(){
+	public static void clearAllData(){
 		ChooseOperateDB.clearAllData();
 	}
 	

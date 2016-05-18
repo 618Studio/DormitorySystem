@@ -8,6 +8,6 @@
 	<link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="templatemo-bg-image-2">
-	<script type="text/javascript">alert("问卷调查提交成功！");location.href("./SubmitSuccessfully.jsp");</script>
+	<script type="text/javascript">alert("问卷调查提交成功！");location.href="display.jsp";</script>
 </body>
 </html>
