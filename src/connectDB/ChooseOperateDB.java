@@ -67,4 +67,28 @@ public class ChooseOperateDB {
 		String finalCheck = "select Sno from question where Sno in(select Sno from students where SroomNr is null and Sgender = "+sex+")";
 		return ConnectDB.query(finalCheck);
 	}
+	
+	public static void clearDB(){
+		String truncateMatch = "truncate table matchstudents;";
+		String truncateScore = "truncate table score;";
+		String truncateStandard = "truncate table standardScore;";
+		ConnectDB.query(truncateMatch);
+		ConnectDB.query(truncateScore);
+		ConnectDB.query(truncateStandard);
+	}
+	
+	public static void clearAllData(){
+		String truncateMatch = "truncate table matchstudents;";
+		String truncateScore = "truncate table score;";
+		String truncateStandard = "truncate table standardScore;";
+		String truncateQuestion = "truncate table question;";
+		String truncateStudent = "truncate table students;";
+		String truncateDormitory = "truncate table dormitory;";
+		ConnectDB.query(truncateMatch);
+		ConnectDB.query(truncateScore);
+		ConnectDB.query(truncateStandard);
+		ConnectDB.query(truncateQuestion);
+		ConnectDB.query(truncateStudent);
+		ConnectDB.query(truncateDormitory);
+	}
 }

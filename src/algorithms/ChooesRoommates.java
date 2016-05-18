@@ -10,7 +10,12 @@ public class ChooesRoommates {
 	final static int MALE = 1;
 	final static int FEMALE = 2; 
 	
+	public void clearAllData(){
+		ChooseOperateDB.clearAllData();
+	}
+	
 	public void chooseRoomMates(){
+		ChooseOperateDB.clearDB();
 		DealQuestion test = new DealQuestion();		
 		test.mainAlgorthms();
 		try {
