@@ -123,16 +123,9 @@ public class GetFiles extends HttpServlet {
 			BaseDAO<Students> stu_DAO = new BaseDAO<Students>();
 			BaseDAO<Dormitory> dor_DAO = new BaseDAO<Dormitory>();
 			
-			
-			//清空寝室数据表
-			Session session = HibernateUtil.getSessionFactory().openSession();
-			Query query = session.createQuery("delete from Dormitory where 1=1");
-			query.executeUpdate();
-			session.close();
-			
 			//清空问题数据表
-			session = HibernateUtil.getSessionFactory().openSession();
-			query = session.createQuery("delete from Question where 1=1");
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			Query query = session.createQuery("delete from Question where 1=1");
 			query.executeUpdate();
 			session.close();
 			
@@ -141,6 +134,14 @@ public class GetFiles extends HttpServlet {
 			query = session.createQuery("delete from Students where 1=1");
 			query.executeUpdate();
 			session.close();
+			
+			//清空寝室数据表
+			session = HibernateUtil.getSessionFactory().openSession();
+		    query = session.createQuery("delete from Dormitory where 1=1");
+			query.executeUpdate();
+			session.close();
+			
+			
 			
 			
 			
@@ -171,10 +172,8 @@ public class GetFiles extends HttpServlet {
 			}		
 			reader.close();
 			
+			
 			//读取学生CSV文件，存入数据库
-			//清空学生数据表
-			
-			
 			reader = new CsvReader(file2.getAbsolutePath(),',',Charset.forName("utf-8"));
 			reader.readHeaders() ;
 			
