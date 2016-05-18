@@ -121,7 +121,7 @@ public class GetFiles extends HttpServlet {
 			BaseDAO<Dormitory> dor_DAO = new BaseDAO<Dormitory>();
 			
 		
-			ChooesRoommates.clearAllData();
+			//ChooesRoommates.clearAllData();
 			
 			System.out.println("sss");	
 			//读取寝室CSV文件，存入数据库
@@ -166,6 +166,7 @@ public class GetFiles extends HttpServlet {
 				
 				String sgender = (String)reader.get(2);
 				stu.setSgender(sgender);
+				stu.setSpassword("123456");
 				stu_DAO.create(stu);
 			}
 			reader.close();
