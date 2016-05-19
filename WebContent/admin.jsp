@@ -114,12 +114,12 @@
 					if(ifmatching==0)
 					{
 						%>
-							<button type="button" class="btn btn-primary btn-lg" onclick="Submit()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
+							<button  id="button" type="button" class="btn btn-primary btn-lg" onclick="Submit()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
 						<% 
 					}
 					else{
 						%>
-							<button type="button" class="btn btn-primary btn-lg" onclick="Submit()" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
+							<button  id="button" type="button" class="btn btn-primary btn-lg" onclick="Submit()" disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;START&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MATCHING&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>		
 						<%
 					}
 					%>
@@ -128,7 +128,7 @@
 						
 				</div>
 				<div id="alert" class="alert alert-success alert-dismissible col-md-7 col-md-offset-2" role="alert" style="text-align:center;margin-top:80px;display:none">
-					<input type="button" id="button" class="close" data-dismiss="alert" aria-label="Close" /><h3>&nbsp;&nbsp;&nbsp;&nbsp;Match&nbsp; Successfully &nbsp;!</h3></div>
+					<input type="button" class="close" data-dismiss="alert" aria-label="Close" /><h3>&nbsp;&nbsp;&nbsp;&nbsp;Match&nbsp; Successfully &nbsp;!</h3></div>
 				
 				
 					

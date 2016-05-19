@@ -25,7 +25,7 @@ public class ConnectDB {
 		// 驱动程序名
 		String driver = "com.mysql.jdbc.Driver";
 		// URL指向要访问的数据库名
-		String url = "jdbc:mysql://192.168.43.232:3306/DormitorySystem";
+		String url = "jdbc:mysql://192.168.2.1:3306/DormitorySystem";
 		// MySQL配置时的用户名
 		String user = "zcy";
 		// MySQL配置时的密码
