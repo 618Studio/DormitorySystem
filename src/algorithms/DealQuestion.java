@@ -26,12 +26,6 @@ public class DealQuestion {
 	}
 	*/
 	
-	public static void main(String args[]){
-		DealQuestion test = new DealQuestion();
-		
-		test.mainAlgorthms();
-	}
-	
 	public DealQuestion(){
 		male = new Question[5][];
 		female = new Question[5][];

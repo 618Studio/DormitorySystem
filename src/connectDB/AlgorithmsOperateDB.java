@@ -15,6 +15,7 @@ public class AlgorithmsOperateDB {
 		}
 	}*/
 	
+	//主函数由后台调用整个算法
 	public AlgorithmsOperateDB() {
 	}
 	
@@ -158,6 +159,7 @@ public class AlgorithmsOperateDB {
 		return result;
 	}
 	
+	//根据性别返回剩下的学生问题信息
 	public static Question[] getleftStudentsQuestion(int sex){
 		Question[] result;
 		String sql = "select * from question where Sno in (select Sno from students where SroomNr is null and Sgender = "+sex+")";
@@ -184,6 +186,7 @@ public class AlgorithmsOperateDB {
 		return result;
 	}
 	
+	//清空数据库中所有数据
 	public static void clearScore(){
 		String truncateScore = "truncate table score;";
 		String truncateStandard = "truncate table standardScore;";
