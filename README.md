@@ -2,10 +2,13 @@
 A Dormitory System to help students to choose roommates.
 ***
 ##TODO
-* The wanted by the students.
+* Document
 
 #Release Nodes
 ***
+
+##2016/5/20
+* Finish basic function,and submit the test data.
 
 ##2016/5/11
 * HongRi has finished divide all students into two parts by sex,and divide students into 4 parts about their future,and finish the two score of calculation.

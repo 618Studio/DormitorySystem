@@ -10,6 +10,20 @@ public class ChooesRoommates {
 	final static int MALE = 1;
 	final static int FEMALE = 2; 
 	
+	/*
+	public static void main(String[] args){
+		ChooseOperateDB.clearDB();
+		DealQuestion test = new DealQuestion();		
+		test.mainAlgorthms();
+		try {
+			ChooesRoommates.firstChoose();
+			ChooesRoommates.secondChoose();
+			ChooesRoommates.thirdChoose();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}*/
+
 	//清除数据库，已修改
 	public static void clearAllData(){
 		ChooseOperateDB.clearAllData();

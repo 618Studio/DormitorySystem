@@ -1,46 +1,56 @@
-/*create table dormitory(
-	DroomNr char(10) primary key,
-	capacity int not null
-);
+CREATE TABLE `dormitory` (
+  `DroomNr` char(10) NOT NULL,
+  `capacity` int(11) NOT NULL,
+  `finish` int(11) NOT NULL,
+  `sex` int(11) NOT NULL,
+  `orientation` varchar(45) NOT NULL,
+  PRIMARY KEY (`DroomNr`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table students(
-	Sno char(12) primary key,
-    Sname char(10) not null,
-    Sgender char(2) not null,
-	Sgpa float,
-    SroomNr char(10),
-    constraint SroomNr_pk foreign key(SroomNr) references dormitory(DroomNr)
-);
+CREATE TABLE `students` (
+  `Sno` char(12) NOT NULL,
+  `Sname` char(10) NOT NULL,
+  `Sgender` char(2) DEFAULT NULL,
+  `SroomNr` char(10) DEFAULT NULL,
+  `Spassword` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`Sno`),
+  KEY `SroomNr_pk` (`SroomNr`),
+  CONSTRAINT `SroomNr_pk` FOREIGN KEY (`SroomNr`) REFERENCES `dormitory` (`DroomNr`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table question(
-	Sno char(12) primary key,
-    Qfuture int not null,
-    Qpart2_3 char(15) not null,
-    Qberth int not null,
-    constraint sno_pk foreign key(Sno) references students(Sno)
-);
+CREATE TABLE `question` (
+  `Sno` char(12) NOT NULL,
+  `Qfuture` int(11) NOT NULL,
+  `Qpart2_3` char(15) NOT NULL,
+  `Qwant` char(12) DEFAULT NULL,
+  PRIMARY KEY (`Sno`),
+  CONSTRAINT `sno_pk` FOREIGN KEY (`Sno`) REFERENCES `students` (`Sno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table score(
-	SmainNr char(12) not null,
-    SotherNr char (12) not null,
-    SameScore int,
-    CompareScore int,
-    totalScore int,
-    constraint main_pk foreign key(SmainNr) references students(Sno),
-    constraint other_pk foreign key(SotherNr) references students(Sno)
-);
+CREATE TABLE `matchstudents` (
+  `Mno1` char(12) NOT NULL,
+  `Mno2` char(12) NOT NULL,
+  `type` int(11) NOT NULL,
+  UNIQUE KEY `Mno1_UNIQUE` (`Mno1`),
+  KEY `no2_pk` (`Mno2`),
+  CONSTRAINT `no1_pk` FOREIGN KEY (`Mno1`) REFERENCES `students` (`Sno`),
+  CONSTRAINT `no2_pk` FOREIGN KEY (`Mno2`) REFERENCES `students` (`Sno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `score` (
+  `SmainNr` char(12) NOT NULL,
+  `SotherNr` char(12) NOT NULL,
+  `SameScore` int(11) DEFAULT NULL,
+  `CompareScore` int(11) DEFAULT NULL,
+  KEY `main_fk` (`SmainNr`),
+  KEY `other_fk` (`SotherNr`),
+  CONSTRAINT `main_fk` FOREIGN KEY (`SmainNr`) REFERENCES `students` (`Sno`),
+  CONSTRAINT `other_fk` FOREIGN KEY (`SotherNr`) REFERENCES `students` (`Sno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-create table matchstudents(
-	Mno1 char(12) not null,
-    Mno2 char(12) not null,
-    type int not null,
-    constraint no1_pk foreign key(Mno1) references students(Sno),
-    constraint no2_pk foreign key(Mno2) references students(Sno)
-)*/
-
-create table standardScore(
-	Sno char(12) primary key,
-    Score int,
-    constraint standard_fk foreign key(Sno) references students(Sno)
-)
+CREATE TABLE `standardScore` (
+  `Sno` char(12) NOT NULL,
+  `Score` int(11) DEFAULT NULL,
+  PRIMARY KEY (`Sno`),
+  CONSTRAINT `standard_fk` FOREIGN KEY (`Sno`) REFERENCES `students` (`Sno`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
