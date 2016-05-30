@@ -86,11 +86,10 @@
                                     		out.println("<td>"+stu.getSno()+"</td>");
                                     		out.println("<td>"+stu.getSname()+"</td>");
                                     		if(stu.getQuestion()==null){
-                               
-                                    			out.println("<td style='color:green'>是</td>");
+                                    			out.println("<td style='color:red'>否</td>");	
                                     		}
                                     		else{
-                                    			out.println("<td style='color:red'>否</td>");
+                                    			out.println("<td style='color:green'>是</td>");
                                     		}
                                     		if(stu.getDormitory()!=null){
                                     			out.println("<td>"+stu.getDormitory().getDroomNr()+"</td>");
